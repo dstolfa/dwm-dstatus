@@ -139,6 +139,8 @@ main(void)
 	char *avgs;
 	char *tmcro;
 	char *bpct = malloc(MAX_BUFFER_SIZE);
+	char *eth = malloc(MAX_BUFFER_SIZE);
+	char *wl = malloc(MAX_BUFFER_SIZE);
 	float bqlty = get_battery_quality();
 
 	if (!(dpy = XOpenDisplay(NULL))) {
@@ -149,10 +151,12 @@ main(void)
 	for (;;sleep(1)) {
 		avgs = loadavg();
 		read_str(BAT_NOW, bpct, MAX_BUFFER_SIZE);
+		read_str(WL_LNK_PATH, wl, MAX_BUFFER_SIZE);
+		read_str(ETH_LNK_PATH, eth, MAX_BUFFER_SIZE);
 		tmcro = mktimes("%H:%M:%S", tzcroatia);
 
-		status = smprintf("L:%s T:%s B:%s BQ:%.2f",
-				avgs, tmcro, bpct, bqlty);
+		status = smprintf("L:%s T:%s B:%s BQ:%.2f E/W:%s/%s",
+				avgs, tmcro, bpct, bqlty, eth, wl);
 		setstatus(status);
 		free(avgs);
 		free(tmcro);
@@ -160,6 +164,8 @@ main(void)
 	}
 
 	free(bpct);
+	free(eth);
+	free(wl);
 	XCloseDisplay(dpy);
 
 	return 0;

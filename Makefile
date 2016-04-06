@@ -29,7 +29,8 @@ endif
 
 # autoconfiguration
 BATPATH=`find /sys/class/power_supply/ -name BAT1 -print0 -quit`
-LNKPATH=`find /sys/class/net/wlp2s0/ -name operstate -print0 -quit`
+WLLNKPATH=`find /sys/class/net/wlp2s0/ -name operstate -print0 -quit`
+ETHLNKPATH=`find /sys/class/net/enp1s0/ -name operstate -print0 -quit`
 
 all: debug
 
@@ -53,7 +54,8 @@ helpers_defs.h:
 	@echo "#define BAT_ENERGY_FULL \"${BATPATH}/energy_full\""               >> helpers_defs.h
 	@echo "#define BAT_ENERGY_FULL_DESIGN \"${BATPATH}/energy_full_design\"" >> helpers_defs.h
 	@echo "#define BAT_STAT \"${BATPATH}/status\""                           >> helpers_defs.h
-	@echo "#define LNK_PATH \"${LNKPATH}\""                                  >> helpers_defs.h
+	@echo "#define WL_LNK_PATH \"${WLLNKPATH}\""                                  >> helpers_defs.h
+	@echo "#define ETH_LNK_PATH \"${ETHLNKPATH}\""                           >> helpers_defs.h
 
 install: release
 	${INSTALL} ${INSTALL_ARGS} ${TARGET} ${INSTALL_DIR}
