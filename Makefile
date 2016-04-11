@@ -54,7 +54,7 @@ helpers_defs.h:
 	@echo "#define BAT_ENERGY_FULL \"${BATPATH}/energy_full\""               >> helpers_defs.h
 	@echo "#define BAT_ENERGY_FULL_DESIGN \"${BATPATH}/energy_full_design\"" >> helpers_defs.h
 	@echo "#define BAT_STAT \"${BATPATH}/status\""                           >> helpers_defs.h
-	@echo "#define WL_LNK_PATH \"${WLLNKPATH}\""                                  >> helpers_defs.h
+	@echo "#define WL_LNK_PATH \"${WLLNKPATH}\""                             >> helpers_defs.h
 	@echo "#define ETH_LNK_PATH \"${ETHLNKPATH}\""                           >> helpers_defs.h
 
 install: release
